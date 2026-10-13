@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seaside Resort Trieste — tour 3D della costiera (demo)</title>
+<meta name="description" content="Demo di portfolio: tre appartamenti a picco sul mare sulla costiera triestina, da visitare in un tour 3D a 360° mentre scorri.">
+<meta property="og:title" content="Seaside Resort Trieste — tour 3D (demo)">
+<meta property="og:description" content="Visita terrazza, soggiorno, camera e bagno in un tour 3D a 360°. Sito dimostrativo non ufficiale.">
+<meta property="og:image" content="assets/img/03.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=14">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="onda" viewBox="0 0 60 44"><path d="M4 30c8-2 14-12 12-26 10 6 18 14 20 26M16 4c0 12 8 22 22 26M2 38c6 4 10 4 15 1s9-3 14 0 9 3 15 0 9-3 12 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
+
+<div class="carico" id="carico" role="status"><div>
+  <svg viewBox="0 0 60 44" aria-hidden="true"><path class="onda" d="M4 30c8-2 14-12 12-26 10 6 18 14 20 26M16 4c0 12 8 22 22 26M2 38c6 4 10 4 15 1s9-3 14 0 9 3 15 0 9-3 12 0"/></svg>
+  <p>Seaside Resort</p>
+  <div class="barra"><i id="caricoBarra"></i></div>
+</div></div>
+
+<header class="nav">
+  <a class="marchio" href="index.html" aria-label="Seaside Resort Trieste, home">
+    <svg viewBox="0 0 60 44" aria-hidden="true"><use href="#onda"/></svg>
+    <span><b>Seaside Resort</b><small>Trieste</small></span>
+  </a>
+  <button class="burger" aria-label="Apri il menu" aria-expanded="false"><i></i></button>
+  <ul class="menu">
+    <li><a href="index.html" aria-current="page">Home</a></li>
+    <li><a href="index.html#chi">About</a></li>
+    <li><a href="index.html#galleria">Galleria</a></li>
+    <li><a href="appartamenti.html">Appartamenti</a></li>
+    <li><a href="index.html#contatti">Contattaci</a></li>
+    <li><a class="btn" href="https://www.seasideresort.it/book-a-room" target="_blank" rel="noopener noreferrer">Prenota</a></li>
+  </ul>
+</header>
+
+<main>
+  <!-- TOUR 3D -->
+  <div class="percorso" id="percorso">
+    <div class="scena" id="scena">
+      <canvas id="tela" role="img" aria-label="Tour a 360 gradi: terrazza sul mare, soggiorno, camera da letto e bagno di un appartamento del Seaside Resort"></canvas>
+      <div class="velo"></div>
+      <div class="errore"><div><h2 style="font-size:2rem">Il tour 3D non parte su questo browser</h2><p style="margin:1rem 0">Prova con Chrome, Edge o Safari aggiornati. Intanto guarda le foto degli appartamenti.</p><a class="btn" href="appartamenti.html">Vedi gli appartamenti</a></div></div>
+
+      <div class="intro" id="intro">
+        <small>Trieste · Costiera triestina</small>
+        <h1>Seaside<br>Resort</h1>
+        <p>A picco sul mare, un passo dall'acqua</p>
+        <a class="btn" href="#percorso" data-vai-tour="0.10">Entra nel tour</a>
+      </div>
+
+      <h2 class="titolo" id="titolo"><small id="sottoStanza">Seaside Resort · Trieste</small><span id="nomeStanza">La terrazza</span></h2>
+      <p class="demo-tag">Demo di portfolio<br>ricostruzione 3D digitale</p>
+      <div id="spilli"></div>
+      <p class="guida" id="guida">Scorri per il tour guidato<br>Trascina per guardarti intorno</p>
+      <div class="capitoli" id="capitoli" role="group" aria-label="Capitoli del tour"></div>
+      <canvas class="radar" id="radar" width="184" height="184" aria-label="Bussola: tocca per girarti in quella direzione"></canvas>
+      <button class="giro" id="giro" type="button">Muovi il telefono per guardarti intorno</button>
+      <button class="riprendi" id="riprendi" type="button">↺ Riprendi il tour</button>
+
+      <div class="finale" id="finale">
+        <h2>Ti aspettiamo<br>sulla <em style="color:var(--ottone)">costiera</em></h2>
+        <p>Tre appartamenti, terrazza privata, doccia esterna e accesso diretto al mare.</p>
+        <div class="riga">
+          <a class="btn pieno" href="https://www.seasideresort.it/book-a-room" target="_blank" rel="noopener noreferrer">Prenota</a>
+          <a class="btn" href="appartamenti.html">Scopri gli appartamenti</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="blocco chi" id="chi">
+    <div>
+      <span class="eyebrow rev">About</span>
+      <h2 class="split">Una delle zone più <em>magiche</em> di Trieste</h2>
+      <p class="rev" data-d="2">Seaside Resort è situato presso una delle zone più magiche e belle di Trieste, la costiera triestina. A picco sul mare gli appartamenti offrono tutto il relax e la privacy di cui si può aver bisogno: ognuno dispone di una terrazza privata con doccia e barbecue, grazie alla quale si può ammirare la vista mozzafiato offerta da Seaside Resort.</p>
+      <p class="rev" data-d="2">Tutte le camere sono provviste di aria condizionata, una cucina privata, un bagno e un accesso diretto al mare.</p>
+      <div class="fatti rev" data-d="3">
+        <div><strong data-count="3">3</strong><span>appartamenti</span></div>
+        <div><strong>Mare</strong><span>accesso diretto</span></div>
+        <div><strong>Privata</strong><span>terrazza con doccia e barbecue</span></div>
+      </div>
+    </div>
+    <div class="mosaico rev" data-d="1" aria-hidden="false">
+      <img class="m1" data-par="0.04" src="assets/img/13.webp" alt="Terrazza sul mare con lettini e ombrellone" loading="lazy">
+      <img class="m2" data-par="-0.05" src="assets/img/08.webp" alt="Doccia esterna in pietra con vista sul mare" loading="lazy">
+      <img class="m3" data-par="0.07" src="assets/img/19.webp" alt="Camera da letto luminosa" loading="lazy">
+    </div>
+  </section>
+
+  <!-- FASCIA SCORREVOLE -->
+  <div class="marq" aria-hidden="true"><div class="marq-track"><span>A picco sul mare</span><span>Accesso diretto al mare</span><span>Terrazza privata</span><span>Costiera triestina</span><span>A picco sul mare</span><span>Accesso diretto al mare</span><span>Terrazza privata</span><span>Costiera triestina</span></div></div>
+
+  <!-- VIDEO ORIGINALE DEL RESORT -->
+  <section class="drone" id="video" aria-label="Video del resort visto dall'alto">
+    <div class="drone-sticky">
+      <div class="drone-top"><span class="eyebrow">Il resort dall'alto</span></div>
+      <div class="drone-frame"><video muted loop playsinline preload="metadata" poster="assets/video/drone-poster.jpg" aria-label="Riprese aeree della costiera triestina e degli appartamenti del Seaside Resort"><source src="assets/video/drone.mp4" type="video/mp4"></video></div>
+      <div class="drone-text"><h2 class="split">La costiera <em>dal cielo</em></h2><p>Strada Costiera 206/1, Trieste. Gli appartamenti affacciati sull'acqua.</p></div>
+      <p class="drone-tag">Video originale di Seaside Resort</p>
+      <button class="drone-play" type="button" aria-pressed="true"><i></i><span>Pausa</span></button>
+    </div>
+  </section>
+
+  <!-- IL MARE (sequenza legata allo scroll) -->
+  <section class="mare" id="mare" aria-label="La terrazza sul mare">
+    <div class="mare-sticky">
+      <canvas id="mareCanvas" role="img" aria-label="Carrellata lenta sulla terrazza con i lettini, i pini e il mare"></canvas>
+      <div class="mare-steps">
+        <article class="mare-step" data-from="0" data-to="0.2"><span class="eyebrow" style="color:var(--ottone)">Accesso diretto al mare</span><h2>A picco<br>sul <em>mare</em></h2><p>Gli appartamenti si affacciano sull'acqua della costiera triestina.</p></article>
+        <article class="mare-step" data-from="0.2" data-to="0.4"><span class="eyebrow" style="color:var(--ottone)">Terrazza privata</span><h2>Relax e<br><em>privacy</em></h2><p>Ogni appartamento ha la sua terrazza, tutta per voi.</p></article>
+        <article class="mare-step" data-from="0.4" data-to="0.6"><span class="eyebrow" style="color:var(--ottone)">Lettini e sdraio</span><h2>Il vostro<br>angolo di <em>sole</em></h2><p>Un posto in prima fila davanti all'orizzonte.</p></article>
+        <article class="mare-step" data-from="0.6" data-to="0.8"><span class="eyebrow" style="color:var(--ottone)">Doccia esterna e barbecue</span><h2>Tutto a<br>portata di <em>terrazza</em></h2><p>Senza dover andare da nessuna parte.</p></article>
+        <article class="mare-step" data-from="0.8" data-to="1.01"><span class="eyebrow" style="color:var(--ottone)">Una fuga dalla realtà</span><h2>Solo<br>il <em>mare</em></h2><p>Una vista mozzafiato, silenzio e pace.</p></article>
+      </div>
+      <div class="mare-bar" aria-hidden="true"><i></i></div>
+      <p class="mare-tag">Sequenza generata<br>da una foto reale con AI</p>
+    </div>
+  </section>
+
+  <!-- APPARTAMENTI -->
+  <section class="blocco app on-dark" id="appartamenti">
+    <header class="sez">
+      <div><span class="eyebrow rev">Appartamenti</span><h2 class="split">Curati in ogni <em>dettaglio</em></h2></div>
+      <a class="btn rev" data-d="2" href="appartamenti.html">Vedi tutti</a>
+    </header>
+    <div class="tre">
+      <a class="card rev" href="appartamenti.html#appartamento1"><img src="assets/img/37.webp" alt="Appartamento 1: terrazza con pino e mare" loading="lazy"><span class="freccia">→</span><div><small>01</small><h3>Appartamento 1</h3><p>Terrazza privata, vista mare, cucina privata e accesso al mare.</p></div></a>
+      <a class="card rev" data-d="1" href="appartamenti.html#appartamento2"><img src="assets/img/43.webp" alt="Appartamento 2: soggiorno con vetrata sulla terrazza" loading="lazy"><span class="freccia">→</span><div><small>02</small><h3>Appartamento 2</h3><p>Terrazza privata, vista mare, cucina privata e accesso al mare.</p></div></a>
+      <a class="card rev" data-d="2" href="appartamenti.html#appartamento3"><img src="assets/img/51.webp" alt="Appartamento 3: terrazza con lettini sul mare" loading="lazy"><span class="freccia">→</span><div><small>03</small><h3>Appartamento 3</h3><p>Terrazza privata, vista mare, cucina privata e accesso al mare.</p></div></a>
+    </div>
+  </section>
+
+  <!-- DOTAZIONI -->
+  <section class="dotaz on-dark" id="dotazioni">
+    <div class="dotaz-wrap">
+      <div class="dotaz-list-box">
+        <span class="eyebrow">Tutto incluso</span>
+        <h2 class="split">In ogni appartamento, <em>proprio tutto</em></h2>
+        <ul class="dotaz-list" aria-label="Dotazioni degli appartamenti">
+          <li data-img="assets/img/04.webp" tabindex="0"><span class="n">01</span><b>Aria condizionata</b></li>
+          <li data-img="assets/img/02.webp" tabindex="0"><span class="n">02</span><b>Vista mare</b></li>
+          <li data-img="assets/img/32.webp" tabindex="0"><span class="n">03</span><b>Accesso al mare</b></li>
+          <li data-img="assets/img/46.webp" tabindex="0"><span class="n">04</span><b>Wi-Fi</b></li>
+          <li data-img="assets/img/33.webp" tabindex="0"><span class="n">05</span><b>Cucina privata</b></li>
+          <li data-img="assets/img/24.webp" tabindex="0"><span class="n">06</span><b>TV satellitare</b></li>
+          <li data-img="assets/img/19.webp" tabindex="0"><span class="n">07</span><b>1 camera da letto</b></li>
+          <li data-img="assets/img/35.webp" tabindex="0"><span class="n">08</span><b>Doccia esterna</b></li>
+          <li data-img="assets/img/03.webp" tabindex="0"><span class="n">09</span><b>Terrazza</b></li>
+          <li data-img="assets/img/51.webp" tabindex="0"><span class="n">10</span><b>Lettini e sdraio</b></li>
+        </ul>
+      </div>
+      <div class="dotaz-view" aria-hidden="true">
+        <div class="dotaz-imgs"><img src="assets/img/04.webp" alt="" loading="lazy"><img src="assets/img/02.webp" alt="" loading="lazy"><img src="assets/img/32.webp" alt="" loading="lazy"><img src="assets/img/46.webp" alt="" loading="lazy"><img src="assets/img/33.webp" alt="" loading="lazy"><img src="assets/img/24.webp" alt="" loading="lazy"><img src="assets/img/19.webp" alt="" loading="lazy"><img src="assets/img/35.webp" alt="" loading="lazy"><img src="assets/img/03.webp" alt="" loading="lazy"><img src="assets/img/51.webp" alt="" loading="lazy"></div>
+        <p class="dotaz-label"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERIA (scroll orizzontale guidato dal verticale) -->
+  <section class="galleria gal-h" id="galleria" aria-label="Galleria fotografica">
+    <div class="gal-sticky">
+      <div class="gal-track" id="galTrack">
+        <div class="gal-intro"><span class="eyebrow">Galleria</span><h2 class="split">Il mare<br><em>dalla terrazza</em></h2><p>Scorri: la galleria si muove con te. Tocca una foto per ingrandirla.</p></div>
+        <figure class="gf t1"><button type="button" data-full="assets/img/01.webp" data-alt="Terrazza e soggiorno"><img src="assets/img/01.webp" alt="Terrazza e soggiorno"></button><figcaption><span>01</span>Terrazza e soggiorno</figcaption></figure>
+        <figure class="gf t2"><button type="button" data-full="assets/img/02.webp" data-alt="Lettini con vista sul mare"><img src="assets/img/02.webp" alt="Lettini con vista sul mare"></button><figcaption><span>02</span>Lettini con vista sul mare</figcaption></figure>
+        <figure class="gf t3"><button type="button" data-full="assets/img/03.webp" data-alt="Tavolo e sedie in terrazza"><img src="assets/img/03.webp" alt="Tavolo e sedie in terrazza"></button><figcaption><span>03</span>Tavolo e sedie in terrazza</figcaption></figure>
+        <figure class="gf t2"><button type="button" data-full="assets/img/04.webp" data-alt="Soggiorno con cucina"><img src="assets/img/04.webp" alt="Soggiorno con cucina"></button><figcaption><span>04</span>Soggiorno con cucina</figcaption></figure>
+        <figure class="gf t1"><button type="button" data-full="assets/img/09.webp" data-alt="Facciata con camera e terrazza"><img src="assets/img/09.webp" alt="Facciata con camera e terrazza"></button><figcaption><span>05</span>Facciata con camera e terrazza</figcaption></figure>
+        <figure class="gf t3"><button type="button" data-full="assets/img/13.webp" data-alt="Terrazza vista dall'alto"><img src="assets/img/13.webp" alt="Terrazza vista dall'alto"></button><figcaption><span>06</span>Terrazza vista dall'alto</figcaption></figure>
+        <figure class="gf t1"><button type="button" data-full="assets/img/19.webp" data-alt="Camera da letto"><img src="assets/img/19.webp" alt="Camera da letto"></button><figcaption><span>07</span>Camera da letto</figcaption></figure>
+        <figure class="gf t2"><button type="button" data-full="assets/img/24.webp" data-alt="Soggiorno con vetrata sul mare"><img src="assets/img/24.webp" alt="Soggiorno con vetrata sul mare"></button><figcaption><span>08</span>Soggiorno con vetrata sul mare</figcaption></figure>
+        <figure class="gf t3"><button type="button" data-full="assets/img/25.webp" data-alt="Camera con vetrata"><img src="assets/img/25.webp" alt="Camera con vetrata"></button><figcaption><span>09</span>Camera con vetrata</figcaption></figure>
+        <figure class="gf t2"><button type="button" data-full="assets/img/22.webp" data-alt="Terrazza con ombrellone"><img src="assets/img/22.webp" alt="Terrazza con ombrellone"></button><figcaption><span>10</span>Terrazza con ombrellone</figcaption></figure>
+        <figure class="gf t1"><button type="button" data-full="assets/img/30.webp" data-alt="Bagno in marmo"><img src="assets/img/30.webp" alt="Bagno in marmo"></button><figcaption><span>11</span>Bagno in marmo</figcaption></figure>
+        <figure class="gf t3"><button type="button" data-full="assets/img/32.webp" data-alt="La spiaggia sotto la terrazza"><img src="assets/img/32.webp" alt="La spiaggia sotto la terrazza"></button><figcaption><span>12</span>La spiaggia sotto la terrazza</figcaption></figure>
+        <figure class="gf t1"><button type="button" data-full="assets/img/37.webp" data-alt="Pino marittimo sul mare"><img src="assets/img/37.webp" alt="Pino marittimo sul mare"></button><figcaption><span>13</span>Pino marittimo sul mare</figcaption></figure>
+        <figure class="gf t2"><button type="button" data-full="assets/img/16.webp" data-alt="Soggiorno luminoso"><img src="assets/img/16.webp" alt="Soggiorno luminoso"></button><figcaption><span>14</span>Soggiorno luminoso</figcaption></figure>
+        <div class="gal-end"><p>Altre foto, altri dettagli:</p><a class="btn scuro" href="appartamenti.html">Vedi gli appartamenti</a></div>
+      </div>
+      <div class="gal-ui"><span class="gal-count"><b id="galN">01</b> / 14</span><div class="gal-bar"><i id="galBar"></i></div></div>
+    </div>
+  </section>
+
+  <!-- RECENSIONE (le parole si accendono con lo scroll) -->
+  <section class="recensione-s on-dark" id="recensione" aria-label="Recensione degli ospiti">
+    <div class="rec-sticky">
+      <img class="rec-bg" src="assets/img/21.webp" alt="" loading="lazy">
+      <div class="rec-veil"></div>
+      <div class="rec-inner">
+        <span class="eyebrow">Guest review</span>
+        <span class="rec-mark" aria-hidden="true">“</span>
+        <blockquote id="recQuote"><span class="qw">Luogo</span> <span class="qw">magico,</span> <span class="qw">silenzioso</span> <span class="qw">e</span> <span class="qw">pacifico</span> <span class="qw">per</span> <span class="qw">una</span> <span class="qw">fuga</span> <span class="qw">momentanea</span> <span class="qw">dalla</span> <span class="qw">realtà</span> </blockquote>
+        <cite>Un ospite</cite>
+      </div>
+      <div class="rec-bar" aria-hidden="true"><i></i></div>
+    </div>
+  </section>
+
+  <!-- MAPPA -->
+  <section class="mappa" id="mappa" aria-label="Dove si trova il Seaside Resort">
+    <svg class="mappa-svg" viewBox="0 0 1440 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs><linearGradient id="mareG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cfe0ea"/><stop offset="1" stop-color="#9fc2d3"/></linearGradient></defs>
+      <rect width="1440" height="640" fill="#e9f0f3"/>
+      <path class="terra" d="M0 0H1440V250C1280 230 1180 300 1040 290S820 235 690 300 470 410 330 380 120 330 0 380Z" fill="#efe7d8"/>
+      <path class="costa" d="M0 380C120 330 220 400 330 380S560 300 690 300 920 280 1040 290 1280 230 1440 250" fill="none" stroke="#1d4d63" stroke-width="3" stroke-linecap="round"/>
+      <g class="isoipse" fill="none" stroke="#1d4d63" stroke-opacity=".28" stroke-width="1.4">
+        <path d="M0 410C120 360 230 430 330 412S560 332 690 332 920 312 1040 322 1280 262 1440 282"/>
+        <path d="M0 444C120 394 240 462 330 446S560 366 690 366 920 346 1040 356 1280 296 1440 316"/>
+        <path d="M0 480C120 430 250 496 330 482S560 402 690 402 920 382 1040 392 1280 332 1440 352"/>
+        <path d="M0 518C120 468 260 530 330 518S560 438 690 438 920 418 1040 428 1280 368 1440 388"/>
+        <path d="M0 560C120 510 270 566 330 556S560 476 690 476 920 456 1040 466 1280 406 1440 426"/>
+      </g>
+      <g class="strade" fill="none" stroke="#c9a86b" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="1 0">
+        <path id="rotta" d="M-20 150C180 130 300 210 470 230S760 180 900 232 1060 292 1090 290"/>
+      </g>
+      <g class="pin" transform="translate(1090 290)"><circle class="p-onda" r="14" fill="none" stroke="#1d4d63"/><circle class="p-onda b" r="14" fill="none" stroke="#1d4d63"/><circle r="9" fill="#1d4d63"/><circle r="3.5" fill="#f3ede2"/></g>
+      <text x="1010" y="262" class="mappa-t" fill="#1d4d63">Strada Costiera 206/1</text>
+      <text x="60" y="130" class="mappa-t" fill="#1d4d63" fill-opacity=".6">TRIESTE</text>
+    </svg>
+    <div class="mappa-card">
+      <span class="eyebrow">Dove siamo</span>
+      <h2 class="split">Sulla <em>costiera</em> triestina</h2>
+      <p>Strada Costiera 206/1, 34151 Trieste</p>
+      <a class="btn scuro" href="https://www.google.com/maps/search/?api=1&amp;query=Strada+Costiera+206%2F1+34151+Trieste" target="_blank" rel="noopener noreferrer">Apri in Maps</a>
+    </div>
+    <div class="bussola" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="#1d4d63" stroke-opacity=".4"/><path id="ago" d="M50 8L58 50L50 92L42 50Z" fill="#1d4d63"/><path d="M50 8L58 50H42Z" fill="#c9a86b"/><text x="50" y="22" text-anchor="middle" font-size="9" fill="#f3ede2">N</text></svg></div>
+  </section>
+
+  <!-- CONTATTI -->
+  <section class="blocco contatti" id="contatti">
+    <div class="onde" aria-hidden="true"><svg viewBox="0 0 2880 120" preserveAspectRatio="none"><path d="M0 70C240 10 480 130 720 70S1200 10 1440 70 1920 130 2160 70 2640 10 2880 70V120H0Z"/></svg><svg class="b" viewBox="0 0 2880 120" preserveAspectRatio="none"><path d="M0 80C240 130 480 30 720 80S1200 130 1440 80 1920 30 2160 80 2640 130 2880 80V120H0Z"/></svg></div>
+    <div class="anelli" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+    <div>
+      <span class="eyebrow rev">Contattaci</span>
+      <h2 class="split">Scrivici, <em>rispondiamo noi</em></h2>
+      <dl class="rev" data-d="1">
+        <div><dt>Telefono</dt><dd><a href="tel:+393313804511">+39 331 380 4511</a></dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:seasideresort.ts@gmail.com">seasideresort.ts@gmail.com</a></dd></div>
+        <div><dt>Dove siamo</dt><dd>Strada Costiera 206/1<br>34151 Trieste</dd></div>
+      </dl>
+      <div class="social rev" data-d="3">
+        <a href="https://www.facebook.com/seasideresort.ts" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Fb</a>
+        <a href="https://www.instagram.com/seasideresort.ts/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Ig</a>
+        <a href="http://www.tripadvisor.com/" target="_blank" rel="noopener noreferrer" aria-label="Tripadvisor">Ta</a>
+      </div>
+    </div>
+    <form id="formContatti" class="rev" data-d="1">
+      <label>Nome<input name="nome" autocomplete="name" required></label>
+      <label>Email<input name="email" type="email" autocomplete="email" required></label>
+      <label class="pieno">Oggetto del messaggio<input name="oggetto"></label>
+      <label>Prefisso<select name="prefisso" autocomplete="tel-country-code"><option>+39</option><option>+43</option><option>+49</option><option>+386</option><option>+385</option><option>+33</option><option>+44</option><option>+1</option></select></label>
+      <label>Numero di telefono<input name="tel" type="tel" autocomplete="tel-national"></label>
+      <label class="pieno">Messaggio<textarea name="msg" required></textarea></label>
+      <label class="consenso pieno"><input type="checkbox" required> Accetto i termini e le condizioni</label>
+      <button class="btn scuro" type="submit">Invia</button>
+      <p class="esito" id="esito" role="status"></p>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="mega" id="mega" aria-hidden="true"><span>Seaside</span><span>Resort</span></div>
+  <div class="riga">
+    <div><strong style="font-family:var(--f-display);font-size:1.4rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sabbia)">Seaside Resort</strong><br>Strada Costiera 206/1, 34151 Trieste<br>seasideresort.ts@gmail.com · +39 331 380 4511</div>
+    <div>CIN SUB2 IT032006C2EY7D3P3F<br>CIN SUB3 IT032006C238S8R5QF</div>
+  </div>
+  <p class="nota">Sito dimostrativo realizzato per portfolio a partire dai contenuti pubblici di seasideresort.it; non è il sito ufficiale. Le fotografie degli appartamenti appartengono al Seaside Resort. I panorami a 360° del tour e la sequenza "Il mare" sono ricostruzioni digitali generate con intelligenza artificiale a partire da quelle fotografie e non sono riprese reali. Il video "La costiera dal cielo" è il filmato originale pubblicato da Seaside Resort sul proprio sito.</p>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-label="Foto ingrandita"><button class="x" aria-label="Chiudi">×</button><button class="p" aria-label="Precedente">‹</button><img alt=""><button class="n" aria-label="Successiva">›</button></div>
+
+<script src="js/tour.js?v=4"></script>
+<script src="js/mare.js?v=4"></script>
+<script src="js/common.js?v=3"></script>
+<script src="js/motion.js?v=5"></script>
+<script src="js/sezioni.js?v=1"></script>
+</body>
+</html>
